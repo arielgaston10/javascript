@@ -1,4 +1,4 @@
-/*variable para el ingreso de nombre*/
+/*variable para ingresar el nombre*/
     let nombre=prompt('Ingresar tu nombre');
 
     while(nombre == '') {alert ('Nombre invalido');

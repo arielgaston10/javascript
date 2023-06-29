@@ -1,32 +1,16 @@
-/* NAV */
-.nav{
-    background-color: rgb(13, 156, 13);
-    height: 55px;
-    grid-area: menu;
-}
-.nav__links{
-    list-style: none;
-    margin-bottom: 20px;
-    display: inline-block;
-}
-.nav__item{
-    display: inline-block;
-}
-.nav__link{
-    text-decoration: none;
-    margin-left: 20px;
-    font-size: 150%;
-}
-.nav__link--active{
-    font-weight: 800;
-    border-bottom: 2px solid rgb(255, 255, 255);
-}
-.nav__search{
-    display: inline-block;
-    margin-left: 60px;
-    grid-area: busqueda;
-}
-.nav__input{
-    height: 25px;
-    border-radius: 10px;
-}
+*{
+    margin: 0;
+    padding: 0;
+}   
+body{
+    background: #3EFF99;
+    background: -webkit-radial-gradient(right, #3EFF99, #EDEDED);
+    background: -moz-radial-gradient(right, #3EFF99, #EDEDED);
+    background: radial-gradient(to left, #3EFF99, #EDEDED);
+  }
+  h1{
+    text-align: center;
+    display: flex;
+    flex-direction: row; 
+    grid-area: nombre;
+}  

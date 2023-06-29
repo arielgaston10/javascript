@@ -5,46 +5,82 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="nav">
-        <ul class="nav__links">
-            <li class="nav__item">
-                <a class="nav__link nav__link--active" href="index.html">Inicio</a>
+    <nav id="navegador">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">inicio</a>
             </li>
-            <li class="nav__item">
-                <a class="nav__link" href="pages/contactos.html">contactos</a>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Accesorios</a>
             </li>
-            <li class="nav__item">
-                <a class="nav__link" href="pages/mascotas.html">mascotas</a>
+            <li class="nav-item">
+              <a class="nav-link" href="#">%Ofertas</a>
             </li>
-            <li class="nav__item">
-                <a class="nav__link" href="pages/marcas.html">marcas</a>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Marcas</a>
             </li>
-            <li class="nav__item">
-                <a class="nav__link" href="pages/servicios.html">servicios</a>
-            </li>
-        </ul>
-        <form class="nav__search">
-            <input class="nav__input" type="text" placeholder="busqueda">
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="buscar" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Buscar</button>
+          </form>
+          </ul>
+          
+          <form class="">
+            <div class="row mt-4">
+              <div class="col-md-4">
+                  <form class="">
+                      <div class="mb-3">
+                          <label for="exampleFormControlInput1" class="form-label">Usuario</label>
+                          <input type="....." class="form-control" id="exampleFormControlInput1" placeholder="nombre">
+                      </div>
+                      <div class="mb-3">
+                          <label for="exampleFormControlInput2" class="form-label">Contraseña</label>
+                          <input type="email" class="form-control" id="exampleFormControlInput1"
+                              placeholder=".......">
+                      </div>
+                  </form>
+              </div>
+          </div>
+            <button type="button" class="btn btn-success">iniciar </button> <button type="button" class="btn btn-success">Crear Cuenta </button>
         </form>
     </nav>
-    <header>
-        <h1>ECCOMERCE TIENDA DE ALIMENTOS Y ACCESORIOS PARA ANIMALES</h1>
-    </header>
+<header>
     <article>
-        <p>Marcas destacadas 
-            productos para tu mascota 
-        </p>
+        <h1 id="titulo">Alimentos</h1>
+    <p>Productos para tu mascota</p>
+    <p>Marcas destacadas .
+    </p>
     </article>
-    <main>
-        <img src="" alt="">
-        <img src="" alt="">
-        <img src="" alt="">
-        <img src="" alt="">
-        <img src="" alt="">
-    </main>
+</header>
+<div>
+    <div id="misprods" class="row"> 
+
+    </div>
+</div>
+  <section>
+    <h3>Productos Agregados:</h3>
+      <table class="table table-striped">
+       <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre del Producto</th>
+            <th>Precio</th>
+        </tr>
+       </thead>
+       <tbody id="tablabody">
+<!--aqui aparecera los productos que el usuario vaya agregando-->
+       </tbody>
+      </table>
+      <h4 id="total">Total a pagar $:</h4>
+  </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
     <script src="productos.js"></script>
     <script src="variables.js"></script>
 </body>

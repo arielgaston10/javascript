@@ -1,5 +1,13 @@
+let productos;
+obtenerJsonProds()
 console.table(productos);
-const carro = [];
+let carro = JSON.parse(localStorage.getItem('carro')) || [0];
+let tablaBody = document.getElementById('tablabody');
+let contenedorProds = document.getElementById('misprods');
+let finalizarBtn = document.getElementById("finalizar");
+let vaciarBtn = document.getElementById("vaciar");
+
+
 
 function filtrarPorPrecio(precio){
     const filtrados = productos.filter((prod)=>prod.precio <= precio);
@@ -7,21 +15,18 @@ function filtrarPorPrecio(precio){
 }
 
 
-let contenedorProds = document.getElementById('misprods');
-let tablaBody = document.getElementById('tablabody');
-
 /*se utiliza dom*/
 function renderizarProductos(listaProds){
     for(const prod of listaProds){
         contenedorProds.innerHTML+=`
         <div class="card col-md-2">
-  <img class="card-img-top" src="${prod.foto}" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">${prod.nombre}</h5>
-    <p class="card-text">$ ${prod.precio}</p>
-    <button id=${prod.id} class="btn btn-primary compra">Comprar</button>
-  </div>
-</div>
+          <img class="card-img-top" src="${prod.foto}" alt="Card image cap">
+          <div class="card-body">
+           <h5 class="card-title">${prod.nombre}</h5>
+           <p class="card-text">$ ${prod.precio}</p>
+      <button id=${prod.id} class="btn btn-primary compra">Comprar</button>
+         </div>
+       </div>
         `;
     }
     /*evento */
@@ -45,11 +50,10 @@ function renderizarProductos(listaProds){
   }
 }
 
-renderizarProductos(productos);
 
 console.log(document.body);
 console.dir(document.body);
-
+/*estilo*/
 let navegador = document.getElementById('navegador');
 console.log(navegador);
 console.log(navegador.innerHTML);
@@ -63,10 +67,21 @@ console.log(parrafos);
 parrafos[0].innerText = new Date().toLocaleDateString();
 
 
+
+
 /*agregando productos*/
+
 function agregarACarrito(producto){
     carro.push(producto);
     console.table(carro);
+    Swal.fire({
+      title: 'Excelente !',
+      text: `Agregaste ${producto.nombre} al carrito !`,
+      imageUrl: producto.foto,
+      imageWidth: 100,
+      imageHeight: 150,
+      imageAlt: producto.nombre,
+    });
     tablaBody.innerHTML += `
       <tr>
         <td>${producto.id}</td>
@@ -75,14 +90,19 @@ function agregarACarrito(producto){
       </tr>
     `;
 
+    
 /*suma total de los productos agregados*/
   let totalCarrito = carro.reduce((acumulador,producto)=>acumulador+producto.precio,0);
-
+  console.log(totalCarrito);
   document.getElementById('total').innerText = 'Total a pagar $: '+totalCarrito;
+/*storage*/
+  localStorage.setItem('carro',JSON.stringify(carro));
 
 }
 
 
+
+//
 for (let i = 0; i < localStorage.length; i++) {
    let clave = localStorage.key(i);
    console.log("Clave: "+ clave);
@@ -92,10 +112,8 @@ for (let i = 0; i < localStorage.length; i++) {
 /almacenar los productos por json/
 
 const guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor) };
-/*almacenamiento por producto*/
-for (const producto of productos) {
-    guardarLocal(producto.id, JSON.stringify(producto));
-}
+
+guardarLocal("listaProductos", JSON.stringify(productos));
  
 
 class Producto {
@@ -107,20 +125,36 @@ class Producto {
     this.precio = this.precio * 1.21;
   }
 }
-/*se obtiene los productos almacenados*/
-const almacenados = JSON.parse(localStorage.getItem("listaProductos"));
-const productos2 = [];
 
-
-for (const objeto of almacenados)
-  productos2.push(new Producto(objeto));
-
- for (const producto of productos2)
-  producto.sumaIva();
-
- console.table(productos2); 
+/*finalizar carrito*/
+finalizarBtn.onclick=()=>{
+  carro=[];
+  document.getElementById('tablabody').innerHTML='';
+  document.getElementById('total').innerText = 'Total a pagar $:';
+  swal.fire('Haz pagado el total del carrito','Gracias por tu compra','success');
+  localStorage.removeItem("carro");
+}
 
  
+
+/*vaciar carrito*/
+vaciarBtn.onclick=()=>{
+  carro=[];
+  document.getElementById('tablabody').innerHTML='';
+  document.getElementById('total').innerText = 'Total a pagar $:';
+  swal.fire('se ha vaciado carro','Vuelve a empezar','success');
+  localStorage.removeItem("carro");
+} 
+
+//JSON
+async function obtenerJsonProds(){
+  const URLJSON = '/productos.json';
+  const respuesta = await fetch(URLJSON);
+  const data = await respuesta.json();
+  console.log(data);
+  productos = data;
+  renderizarProductos(productos);
+}
   
 
 
